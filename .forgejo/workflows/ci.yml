@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+env:
+  NIX_CONFIG: experimental-features = nix-command flakes
+
+jobs:
+  check:
+    runs-on: codeberg-medium
+    container:
+      image: nixos/nix:2.35.2
+    steps:
+      # Fetch the ref rather than cloning: a plain clone lacks fork PR commits.
+      - run: |
+          git init -q .
+          git remote add origin "${{ github.server_url }}/${{ github.repository }}.git"
+          git fetch -q --depth=1 origin "${{ github.ref }}"
+          git checkout -q FETCH_HEAD
+      - name: nix format
+        run: nix fmt -- --check .
+      - name: lua format
+        run: nix run --inputs-from . nixpkgs#stylua -- --check .
+      - name: flake check
+        run: nix flake check
