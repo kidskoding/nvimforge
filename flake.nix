@@ -16,24 +16,29 @@
     forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f nixpkgs.legacyPackages.${system});
 
     toolsFor = pkgs:
-      with pkgs; [
-        git
-        ripgrep
-        fd
-        gcc
-        gnumake
-        tree-sitter
-        lazygit
-        gdu
-        bottom
-        nodejs
-        python3
-        curl
-        wget
-        unzip
-        gzip
-        gnutar
-      ];
+      with pkgs;
+        [
+          git
+          gnumake
+          gcc
+          unzip
+          ripgrep
+          fd
+          tree-sitter
+          lazygit
+          gdu
+          bottom
+          nodejs
+          python3
+          curl
+          wget
+          gzip
+          gnutar
+        ]
+        ++ lib.optionals stdenv.isLinux [
+          wl-clipboard
+          xclip
+        ];
 
     mkLauncher = pkgs: {
       name,
