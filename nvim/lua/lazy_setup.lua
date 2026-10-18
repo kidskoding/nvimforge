@@ -1,25 +1,24 @@
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^6", -- Remove version tracking to elect for nightly AstroNvim
+    version = "^6", -- stay on AstroNvim 6, so updates never jump to a new major version
     import = "astronvim.plugins",
-    opts = { -- AstroNvim options must be set here with the `import` key
-      mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
-      maplocalleader = ",", -- This ensures the localleader key must be configured before Lazy is set up
+    opts = { -- AstroNvim's own options
+      mapleader = " ", -- the leader key is Space, so <Leader>ff means Space f f
+      maplocalleader = ",", -- a second leader key some plugins use for file-type-specific shortcuts
       icons_enabled = true, -- Set to false to disable icons (if no Nerd Font is available)
-      pin_plugins = nil, -- Default will pin plugins when tracking `version` of AstroNvim, set to true/false to override
-      update_notifications = true, -- Enable/disable notification about running `:Lazy update` twice to update pinned plugins
+      pin_plugins = nil, -- keep plugins at versions tested with AstroNvim 6
+      update_notifications = true, -- show a reminder about how to update pinned plugins
     },
   },
-  { import = "community" },
-  { import = "plugins" },
+  { import = "community" }, -- lua/community.lua
+  { import = "plugins" }, -- every file in lua/plugins/
 } --[[@as LazySpec]], {
-  -- Configure any other `lazy.nvim` configuration options here
-  install = { colorscheme = { "astrotheme", "habamax" } },
+  install = { colorscheme = { "astrotheme", "habamax" } }, -- theme shown while plugins install for the first time
   ui = { backdrop = 100 },
   performance = {
     rtp = {
-      -- disable some rtp plugins, add more to your liking
+      -- built-in Neovim plugins turned off because they aren't needed (Neo-tree replaces netrw)
       disabled_plugins = {
         "gzip",
         "netrwPlugin",
