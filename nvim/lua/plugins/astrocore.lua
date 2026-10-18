@@ -2,6 +2,7 @@
 -- Configuration documentation can be found with `:h astrocore`
 
 ---@type LazySpec
+
 return {
   "AstroNvim/astrocore",
   ---@type AstroCoreOpts
@@ -37,6 +38,7 @@ return {
         -- setting a mapping to false disables it, e.g. ["<C-S>"] = false
         ["]b"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["[b"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+
         -- pick a tab in the tab bar to close it
         ["<Leader>bd"] = {
           function()
