@@ -1,7 +1,7 @@
 return {
   "nvim-lualine/lualine.nvim",
   opts = function()
-    local theme = require("lualine.themes.gruvbox_dark")
+    local theme = require "lualine.themes.gruvbox_dark"
 
     theme.normal.a.bg = "#fabd2f"
 
