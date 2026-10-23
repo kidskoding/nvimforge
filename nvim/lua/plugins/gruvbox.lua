@@ -5,6 +5,8 @@ return {
     overrides = {
       SignColumn = { link = "Normal" },
       FoldColumn = { link = "Normal" },
+
+      -- which key overrides
       WhichKey = { link = "Function" },
       WhichKeyNormal = { link = "NormalFloat" },
       WhichKeyBorder = { link = "FloatBorder" },
