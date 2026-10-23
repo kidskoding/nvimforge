@@ -28,7 +28,7 @@ return {
         spell = false, -- spell checking
         signcolumn = "yes", -- always show the column for Git and error markers
         wrap = false, -- don't wrap long lines
-        cmdheight = 1, -- keep lualine visible while typing a command
+        cmdheight = 1,
       },
       g = {}, -- global variables, for plugins that read settings from vim.g
     },
