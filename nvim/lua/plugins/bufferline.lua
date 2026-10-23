@@ -11,8 +11,8 @@ return {
         bufferline.style_preset.no_italic,
       },
       tab_size = 0,
-      separator_style = { "", "" },
       indicator = { style = "none" },
+      separator_style = "thin",
       offsets = {
         {
           filetype = "neo-tree",
@@ -31,6 +31,9 @@ return {
     local highlights = {
       fill = { bg = normal_bg },
       background = { bg = normal_bg },
+      separator = { fg = "#504945", bg = normal_bg },
+      separator_visible = { fg = "#504945", bg = normal_bg },
+      separator_selected = { fg = "#504945", bg = normal_bg },
       offset_separator = { bg = normal_bg },
     }
 
