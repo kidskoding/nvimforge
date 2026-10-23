@@ -15,6 +15,6 @@ return {
   -- { import = "astrocommunity.pack.typescript" },
   -- { import = "astrocommunity.pack.rust" },
 
-  -- vibecoding with neovim!
   { import = "astrocommunity.ai.claudecode-nvim" },
 }
+
