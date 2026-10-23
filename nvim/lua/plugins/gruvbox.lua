@@ -1,3 +1,4 @@
+-- Gruvbox theme: gutters match the editor background, and which-key borrows the theme's colors.
 return {
   "ellisonleao/gruvbox.nvim",
   priority = 1000,

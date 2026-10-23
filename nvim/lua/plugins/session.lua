@@ -1,3 +1,4 @@
+-- Restore the last session only on a bare `nvim`, not when a file or a -b, -c, -S or +cmd flag is given.
 return {
   "AstroNvim/astrocore",
   opts = function(_, opts)

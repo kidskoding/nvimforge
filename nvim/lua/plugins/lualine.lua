@@ -1,3 +1,4 @@
+-- Status bar on the gruvbox theme: one bar for the whole screen, a purple badge for terminal panels.
 return {
   "nvim-lualine/lualine.nvim",
   opts = function()

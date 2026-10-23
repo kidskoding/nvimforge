@@ -1,3 +1,4 @@
+-- Tabs: the active tab sits on a raised background, and thin gray lines divide the rest.
 return {
   "akinsho/bufferline.nvim",
   opts = function(_, opts)
