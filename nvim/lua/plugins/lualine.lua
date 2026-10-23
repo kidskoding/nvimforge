@@ -4,6 +4,7 @@ return {
     local theme = require "lualine.themes.gruvbox_dark"
 
     theme.normal.a.bg = "#fabd2f"
+    theme.normal.c.fg = "#d5c4a1"
 
     theme.terminal = vim.deepcopy(theme.insert)
     theme.terminal.a.bg = "#d3869b"
