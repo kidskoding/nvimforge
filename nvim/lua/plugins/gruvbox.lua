@@ -5,7 +5,6 @@ return {
     overrides = {
       SignColumn = { link = "Normal" },
       FoldColumn = { link = "Normal" },
-      -- gruvbox only ships WhichKeyTitle; without these the popup is an empty box
       WhichKey = { link = "Function" },
       WhichKeyNormal = { link = "NormalFloat" },
       WhichKeyBorder = { link = "FloatBorder" },
