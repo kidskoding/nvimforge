@@ -17,5 +17,8 @@ return {
   -- { import = "astrocommunity.pack.rust" },
 
   { import = "astrocommunity.ai.claudecode-nvim" },
+
+  { import = "astrocommunity.recipes.auto-session-restore" },
 }
+
 
