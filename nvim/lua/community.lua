@@ -6,6 +6,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" }, -- helps when editing these config files
   { import = "astrocommunity.bars-and-lines.lualine-nvim" }, -- the status bar
+  { import = "astrocommunity.bars-and-lines.bufferline-nvim" }, -- the tabs
 
   -- languages (uncomment the languages you use!)
   -- check out all available language extension packs here: https://github.com/AstroNvim/astrocommunity/tree/main/lua/astrocommunity/pack
