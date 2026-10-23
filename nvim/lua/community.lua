@@ -4,7 +4,9 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
+
   { import = "astrocommunity.pack.lua" }, -- helps when editing these config files
+
   { import = "astrocommunity.bars-and-lines.lualine-nvim" }, -- the status bar
   { import = "astrocommunity.bars-and-lines.bufferline-nvim" }, -- the tabs
 
@@ -20,5 +22,3 @@ return {
 
   { import = "astrocommunity.recipes.auto-session-restore" },
 }
-
-

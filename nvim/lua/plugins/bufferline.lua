@@ -3,6 +3,7 @@ return {
   opts = function(_, opts)
     local bufferline = require "bufferline"
     local normal_bg = vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg or "#282828"
+
     opts.options = vim.tbl_deep_extend("force", opts.options or {}, {
       style_preset = {
         bufferline.style_preset.minimal,
@@ -24,12 +25,14 @@ return {
         },
       },
     })
+
     opts.highlights = vim.tbl_deep_extend("force", opts.highlights or {}, {
       fill = { bg = normal_bg },
       background = { bg = normal_bg },
       indicator_selected = { fg = "#d79921" },
       offset_separator = { bg = normal_bg },
     })
+
     return opts
   end,
 }
