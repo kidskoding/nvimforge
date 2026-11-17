@@ -35,7 +35,7 @@
           gzip
           gnutar
         ]
-        ++ lib.optionals stdenv.isLinux [
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
           wl-clipboard
           xclip
         ];
@@ -51,49 +51,42 @@
         runtimeInputs = toolsFor pkgs ++ [pkgs.neovim-unwrapped] ++ pkgs.lib.optional gui pkgs.neovide;
         text = ''
           APP=nvimforge
-          orig_config="''${XDG_CONFIG_HOME:-$HOME/.config}"
+          dev=${pkgs.lib.boolToString dev}
+          fresh=${pkgs.lib.boolToString fresh}
+          gui=${pkgs.lib.boolToString gui}
+          user_config="''${XDG_CONFIG_HOME:-$HOME/.config}"
 
-          ${
-            if dev
-            then ''
-              src="$PWD/nvim"
-              if [ ! -f "$src/init.lua" ]; then
-                echo "error: no nvim/init.lua in $PWD (run from the nvimforge repo root)" >&2
-                exit 1
-              fi
-            ''
-            else ''
-              src=${./nvim}
-            ''
-          }
+          if $dev; then
+            src="$PWD/nvim"
+            if [ ! -f "$src/init.lua" ]; then
+              echo "error: no nvim/init.lua in $PWD (run from the nvimforge repo root)" >&2
+              exit 1
+            fi
+          else
+            src=${./nvim}
+          fi
 
-          ${
-            if fresh
-            then ''
-              root="$(mktemp -d -t nvimforge.XXXXXX)"
-              trap 'rm -rf "$root"' EXIT
-            ''
-            else ''
-              root="''${XDG_DATA_HOME:-$HOME/.local/share}/$APP"
-            ''
-          }
+          if $fresh; then
+            root="$(mktemp -d -t nvimforge.XXXXXX)"
+            trap 'rm -rf "$root"' EXIT
+          else
+            root="''${XDG_DATA_HOME:-$HOME/.local/share}/$APP"
+          fi
 
           cfg="$root/config/$APP"
           mkdir -p "$root/config"
           rm -rf "$cfg"
-          ${
-            if dev
-            then ''
-              ln -s "$src" "$cfg"
-            ''
-            else ''
-              cp -r "$src" "$cfg"
-              chmod -R u+w "$cfg"
-            ''
-          }
+          if $dev; then
+            ln -s "$src" "$cfg"
+          else
+            # files copied out of the Nix store are read-only, and lazy.nvim writes lazy-lock.json here
+            cp -r "$src" "$cfg"
+            chmod -R u+w "$cfg"
+          fi
 
-          if [ -z "''${GIT_CONFIG_GLOBAL:-}" ] && [ ! -e "$HOME/.gitconfig" ] && [ -e "$orig_config/git/config" ]; then
-            export GIT_CONFIG_GLOBAL="$orig_config/git/config"
+          # XDG_CONFIG_HOME moves below, so point git at the user's own config before it does
+          if [ -z "''${GIT_CONFIG_GLOBAL:-}" ] && [ ! -e "$HOME/.gitconfig" ] && [ -e "$user_config/git/config" ]; then
+            export GIT_CONFIG_GLOBAL="$user_config/git/config"
           fi
 
           export NVIM_APPNAME="$APP"
@@ -102,15 +95,11 @@
           export XDG_STATE_HOME="$root/state"
           export XDG_CACHE_HOME="$root/cache"
 
-          ${
-            if gui
-            then ''
-              neovide --no-fork --neovim-bin "$(command -v nvim)" "$@"
-            ''
-            else ''
-              nvim "$@"
-            ''
-          }
+          if $gui; then
+            neovide --no-fork --neovim-bin "$(command -v nvim)" "$@"
+          else
+            nvim "$@"
+          fi
         '';
       };
   in {

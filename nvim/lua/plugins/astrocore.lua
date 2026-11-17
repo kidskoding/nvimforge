@@ -23,7 +23,7 @@ return {
     },
     options = {
       opt = { -- editor settings, like VS Code's settings.json
-        relativenumber = true, -- number lines relative to the cursor
+        relativenumber = false, -- real line numbers, like VS Code, instead of distances from the cursor
         number = true, -- show line numbers
         spell = false, -- spell checking
         signcolumn = "yes", -- always show the column for Git and error markers
