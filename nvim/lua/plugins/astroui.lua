@@ -7,7 +7,7 @@ return {
   ---@type AstroUIOpts
   opts = {
     -- change colorscheme
-    colorscheme = "gruvbox",
+    colorscheme = "catppuccin-macchiato",
     -- the spinner shown in the status bar while a language server is loading
     icons = {
       LSPLoading1 = "⠋",
