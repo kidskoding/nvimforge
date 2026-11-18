@@ -22,6 +22,7 @@ return {
       desc = "Toggle AI CLI",
     },
     { "<Leader>ao", function() require("sidekick.cli").select() end, desc = "Open another AI CLI" },
+    { "<Leader>ad", function() require("sidekick.cli").close() end, desc = "Close an AI CLI session" },
     {
       "<Leader>at",
       function() require("sidekick.cli").send { msg = "{this}" } end,
