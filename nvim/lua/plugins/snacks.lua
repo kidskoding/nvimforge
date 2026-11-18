@@ -1,4 +1,4 @@
--- Dashboard splash buttons (Snacks). Drop Find Word / Bookmarks; keep Quit.
+-- Trim the dashboard to five rows and add Quit.
 ---@type LazySpec
 return {
   "folke/snacks.nvim",
@@ -8,7 +8,6 @@ return {
     opts.dashboard = opts.dashboard or {}
     opts.dashboard.preset = opts.dashboard.preset or {}
 
-    -- Assign the full list, then clear any leftover stock rows Lazy may have merged in.
     opts.dashboard.preset.keys = {
       { key = "n", action = "<Leader>n", icon = get_icon("FileNew", 0, true), desc = "New File  " },
       { key = "f", action = "<Leader>ff", icon = get_icon("Search", 0, true), desc = "Find File  " },
@@ -19,6 +18,7 @@ return {
       { key = "q", action = ":qa", icon = get_icon("BufferClose", 0, true), desc = "Quit  " },
     }
 
+    -- Lazy can merge leftover stock rows onto the list, so clear anything past ours
     for i = #opts.dashboard.preset.keys + 1, 12 do
       opts.dashboard.preset.keys[i] = nil
     end

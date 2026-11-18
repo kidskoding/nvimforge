@@ -1,4 +1,4 @@
--- Turn off AstroNvim's per-window title bar so the Claude panel doesn't stack a second bar under the tabs.
+-- No title bar above each window, so the Claude panel shows only one.
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
