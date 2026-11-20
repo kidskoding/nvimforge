@@ -16,7 +16,7 @@ return {
   { import = "astrocommunity.pack.python.ty" }, -- ty: type checking, go-to-definition, and hover docs
   { import = "astrocommunity.pack.python.ruff" }, -- Ruff: linting and formatting for Python
   -- { import = "astrocommunity.pack.typescript" },
-  -- { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.rust" }, -- Rust: rust-analyzer, crates.io versions in Cargo.toml, and the debugger
 
   { import = "astrocommunity.ai.claudecode-nvim" },
 
